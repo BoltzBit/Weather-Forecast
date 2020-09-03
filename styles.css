@@ -1,0 +1,105 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap');
+
+body{
+    margin: 0;
+    padding: 0;
+    align-items: center;
+    font-family: 'Roboto', sans-serif;
+    color: #fff;
+}
+
+.weather{
+    display: grid;
+    background-color: #007bb2;
+    margin: 90px auto;
+    width: 80%;
+    height: 500px;
+    padding: 15px;
+    border-radius: 10px;
+}
+
+input{
+    width: 35rem;
+    height: 1.75rem;
+    padding: 2px;
+    border-radius: 10px;
+    border: 1px solid #7b74ca;
+}
+
+.weather-item{
+    margin: 5px;
+}
+
+.busca{
+    grid-area: busca;
+    display: grid;
+    justify-content: center;
+}
+
+.info{
+    grid-area: info;
+    display: grid;
+    justify-content: center;
+    border-radius: 15px;
+    font-weight: 500;
+}
+
+.info p{
+    margin: auto;
+    font-size: 70px;
+}
+
+.aside{
+    grid-area: aside;
+    display: grid;
+    justify-content: center;
+    font-weight: 500;
+}
+
+.aside ul{
+    margin: auto;
+    list-style: none;
+    padding: 0;
+}
+
+.aside ul li{
+    margin: 11px 0;
+}
+
+.section{
+    grid-area: section;
+    display: flex;
+    justify-content: space-around;
+}
+
+.section-item{
+    margin: 0;
+    height: 150px;
+    width: 4rem;
+    text-align: center;
+}
+
+.section-item > h3{
+    margin: 0;
+}
+
+.section-item > p:nth-child(4),
+.section-item > p:nth-child(3){
+    margin: 0;
+    font-weight: 500;
+}
+
+.section-item > p:nth-child(5){
+    font-size: .90rem;
+    font-weight: 400;
+}
+
+.grid-template-areas-1{
+    grid-template-areas: 
+        "busca busca busca"
+        "info info aside"
+        "section section section"
+        "footer footer footer"
+    ;
+}
+
