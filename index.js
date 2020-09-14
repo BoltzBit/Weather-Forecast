@@ -74,11 +74,34 @@ function weatherFront(forecast,local){
     const WEEK = document.querySelector("#week");
 
     TODAY.innerHTML = "";
+    TODAY_INFO.innerHTML = "";
 
     //como adicionar os textos e tags html
     const P = document.createElement("p");
-    const TEXT = document.createTextNode(`${local}, ${Math.round(forecast.temp)}º`);
+    const UL = document.createElement("ul");
+    const LI_ST = document.createElement("li");
+    const LI_WIND = document.createElement("li");
+    const LI_PA = document.createElement("li");
+    const LI_UR = document.createElement("li");
+    const I = document.createElement("i");
 
-    P.appendChild(TEXT);
+    const TEXT_TEMP = document.createTextNode(`${local}, ${Math.round(forecast.temp)}º`);
+    const TEXT_ST = document.createTextNode(`${Math.round(forecast.feels_like)}º ST`);
+    const TEXT_WIND = document.createTextNode(`${forecast.wind_speed} Km/H`);
+    const TEXT_PA = document.createTextNode(`${forecast.pressure} hPa`);
+    const TEXT_UR = document.createTextNode(`${forecast.humidity} UR`);
+
+    P.appendChild(TEXT_TEMP);
     TODAY.append(P);
+
+    LI_ST.appendChild(TEXT_ST);
+    LI_WIND.appendChild(TEXT_WIND);
+    LI_PA.appendChild(TEXT_PA);
+    LI_UR.appendChild(TEXT_UR);
+
+    UL.append(LI_ST);
+    UL.append(LI_WIND);
+    UL.append(LI_PA);
+    UL.append(LI_UR);
+    TODAY_INFO.append(UL);
 }
