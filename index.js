@@ -20,7 +20,10 @@ function locationCity(city){
     REQUEST
         .then(data => data.json())
         .then(data => {
-            console.log(data);
+            const { lat, lon, display_name } = data[0];
+            const LOCAL = display_name.split(",")[0];
+
+            weatherCity(lat, lon, LOCAL);
         })
         .catch(err => {
             console.log("não foi possível recuperar os dados");
@@ -28,18 +31,54 @@ function locationCity(city){
 
 }
 
-function weatherCity(lat, long){
-    const URL = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${long}&exclude=minutely,hourly&units=metric&appid=${TOKEN_WEATHER}`;
+function weatherCity(lat, lon, local){
+    const URL = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&exclude=minutely,hourly&units=metric&appid=${TOKEN_WEATHER}`;
     const REQUEST = fetch(URL);
     
     REQUEST
         .then(data => data.json())
         .then(data => {
-            console.log(data);
+            const { 
+                current: { temp, feels_like, wind_speed, pressure, humidity, 
+                weather:[{ description }] },
+                daily,
+            } = data;
+
+            const FORECAST = {
+                temp,
+                feels_like,
+                wind_speed,
+                pressure,
+                humidity,
+                description,
+                daily
+            }
+
+            weatherFront(FORECAST, local);
+
+            /*daily.forEach(e => {
+                console.log(e.humidity);
+            });
+            
+            console.log(`${temp}, ${feels_like}, ${wind_speed}, ${pressure}, ${humidity}, ${description}`);*/
         })
         .catch(err => {
             console.log("Não foi possível recuperar os dados!");
         });
 }
 
-"http://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${API_KEY}"
+
+function weatherFront(forecast,local){
+    const TODAY = document.querySelector("#today");
+    const TODAY_INFO = document.querySelector("#today-info");
+    const WEEK = document.querySelector("#week");
+
+    TODAY.innerHTML = "";
+
+    //como adicionar os textos e tags html
+    const P = document.createElement("p");
+    const TEXT = document.createTextNode(`${local}, ${Math.round(forecast.temp)}º`);
+
+    P.appendChild(TEXT);
+    TODAY.append(P);
+}
