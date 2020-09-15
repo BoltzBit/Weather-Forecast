@@ -89,5 +89,6 @@ function weatherFront(forecast,local){
         </ul>
     `;
 
+
     TODAY_INFO.innerHTML += UL_DAILY;
 }
