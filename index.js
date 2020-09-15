@@ -40,8 +40,7 @@ function weatherCity(lat, lon, local){
         .then(data => {
             const { 
                 current: { temp, feels_like, wind_speed, pressure, humidity, 
-                weather:[{ description }] },
-                daily,
+                weather:[{ description }] }
             } = data;
 
             const FORECAST = {
@@ -50,9 +49,8 @@ function weatherCity(lat, lon, local){
                 wind_speed,
                 pressure,
                 humidity,
-                description,
-                daily
-            }
+                description
+            };
 
             weatherFront(FORECAST, local);
 
@@ -71,37 +69,25 @@ function weatherCity(lat, lon, local){
 function weatherFront(forecast,local){
     const TODAY = document.querySelector("#today");
     const TODAY_INFO = document.querySelector("#today-info");
-    const WEEK = document.querySelector("#week");
 
     TODAY.innerHTML = "";
     TODAY_INFO.innerHTML = "";
 
-    //como adicionar os textos e tags html
     const P = document.createElement("p");
-    const UL = document.createElement("ul");
-    const LI_ST = document.createElement("li");
-    const LI_WIND = document.createElement("li");
-    const LI_PA = document.createElement("li");
-    const LI_UR = document.createElement("li");
-    const I = document.createElement("i");
 
     const TEXT_TEMP = document.createTextNode(`${local}, ${Math.round(forecast.temp)}º`);
-    const TEXT_ST = document.createTextNode(`${Math.round(forecast.feels_like)}º ST`);
-    const TEXT_WIND = document.createTextNode(`${forecast.wind_speed} Km/H`);
-    const TEXT_PA = document.createTextNode(`${forecast.pressure} hPa`);
-    const TEXT_UR = document.createTextNode(`${forecast.humidity} UR`);
 
     P.appendChild(TEXT_TEMP);
     TODAY.append(P);
 
-    LI_ST.appendChild(TEXT_ST);
-    LI_WIND.appendChild(TEXT_WIND);
-    LI_PA.appendChild(TEXT_PA);
-    LI_UR.appendChild(TEXT_UR);
+    const UL_DAILY = `
+        <ul>
+            <li><i class="fas fa-temperature-low"></i>${Math.round(forecast.feels_like)}º ST</li>
+            <li><i class="fas fa-wind"></i>${forecast.wind_speed} km/h</li>
+            <li><i class="fas fa-clock"></i>${forecast.pressure} hPa</li>
+            <li><i class="fas fa-tint"></i>${forecast.humidity} UR</li>
+        </ul>
+    `;
 
-    UL.append(LI_ST);
-    UL.append(LI_WIND);
-    UL.append(LI_PA);
-    UL.append(LI_UR);
-    TODAY_INFO.append(UL);
+    TODAY_INFO.innerHTML += UL_DAILY;
 }
