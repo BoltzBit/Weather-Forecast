@@ -82,10 +82,10 @@ function weatherFront(forecast,local){
 
     const UL_DAILY = `
         <ul>
-            <li><i class="fas fa-temperature-low"></i>${Math.round(forecast.feels_like)}º ST</li>
-            <li><i class="fas fa-wind"></i>${forecast.wind_speed} km/h</li>
+            <li><i class="fas fa-temperature-low"></i> ${Math.round(forecast.feels_like)}º ST</li>
+            <li><i class="fas fa-wind"></i> ${forecast.wind_speed} km/h</li>
             <li><i class="fas fa-clock"></i>${forecast.pressure} hPa</li>
-            <li><i class="fas fa-tint"></i>${forecast.humidity} UR</li>
+            <li><i class="fas fa-tint"></i> ${forecast.humidity} UR</li>
         </ul>
     `;
 
