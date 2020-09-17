@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap');
 
+
 body{
     margin: 0;
     padding: 0;
@@ -7,6 +8,7 @@ body{
     background-color: #63cbb7;
     font-family: 'Roboto', sans-serif;
     color: #fff;
+    overflow: hidden;
 }
 
 .weather{
@@ -17,7 +19,7 @@ body{
     height: 200px;
     padding: 15px;
     border-radius: 10px;
-    box-shadow: rgba(32,178,170);
+    box-shadow: 4px 4px 10px rgba(32,178,170);
 }
 
 input{
@@ -75,7 +77,23 @@ input{
 .grid-template-areas-1{
     grid-template-areas: 
         "busca busca busca"
-        "info info aside"
-    ;
+        "info info aside";
 }
 
+@media(max-width:360px){
+    body{
+        overflow-y: hidden;
+    }
+    .weather{
+        display: block;
+        background: none;
+        box-shadow: none;
+        margin: auto;
+        padding: auto;
+        border-radius: 0;
+    }
+    
+    .busca{
+        margin: auto;
+    }
+}
